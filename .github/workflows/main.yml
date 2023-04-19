@@ -19,5 +19,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: backup
-        run: sudo mkdir -p /var/tmp/nginx-aws-signature && \
-             sudo cp -fR * /var/tmp/nginx-aws-signature/*
+        run: mkdir -p /var/tmp/nginx-aws-signature && \
+             cp -fR * /var/tmp/nginx-aws-signature/*
+      
+      - name: checkout
+        run: git checkout lib && \
+             cp -fR /var/tmp/nginx-aws-signature/core/*.js . && \
+             git add *.js && \
+             git commit -m "feat: update AWS signature lib" && \
+             git push
